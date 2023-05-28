@@ -4,9 +4,75 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
+		<title>MAIN PAGE</title>
 	</head>
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+		}
+		body {
+			background: aqua;
+		}
+		h1 {
+			font-size: 50px;
+			padding: 15px;
+			background: lime;
+			text-align: center;
+			color: blue;
+		}
+		h2 {
+			padding-bottom: 30px;
+		}
+		.cont {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			margin-bottom: 20px;
+		}
+
+		form {
+			text-align: center;
+			padding: 50px;
+			width: 50%;
+			margin: 0 auto;
+		}
+		label {
+			font-size: 25px;
+		}
+		input {
+			height: 50px;
+			width: 100%;
+			border-radius: 10px;
+			border: none;
+			padding: 5px 20px;
+			font-size: 20px;
+			outline: none;
+		}
+		button {
+			padding: 10px 30px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			background: rgb(0, 132, 255);
+			color: white;
+			font-size: 20px;
+		}
+	</style>
 	<body>
-		<h1>Hello</h1>
+		<h1>Node Coders 👋</h1>
+		<form action="/" method="POST">
+			<h2>SEND TO POST</h2>
+			<div class="cont">
+				<label for="name">NAME: </label>
+				<input type="text" id="name" value="name" />
+			</div>
+			<div class="cont">
+				<label for="email">EMAIL: </label>
+				<input type="text" id="email" value="email" />
+			</div>
+			<button type="submit" value="submit">SUBMIT</button>
+		</form>
 	</body>
 </html>
