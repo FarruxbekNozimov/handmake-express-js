@@ -27,7 +27,7 @@ app.delete("/", (req, res) => {
 });
 
 app.get("/get", (req, res) => {
-	res.end();
+	res.sendFile(path.join(__dirname, "post.html"), req.body);
 });
 
 app.post("/post", (req, res) => {

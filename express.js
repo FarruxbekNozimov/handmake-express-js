@@ -16,6 +16,17 @@ class express {
 		this.server = http.createServer;
 	}
 
+	parseFormData(formDataString) {
+		const formData = {};
+		const pairs = formDataString.split("&");
+
+		for (let i = 0; i < pairs.length; i++) {
+			const [key, value] = pairs[i].split("=");
+			formData[key] = decodeURIComponent(value);
+		}
+		return formData;
+	}
+
 	use(callback = () => {}) {
 		this.middleware.push(callback);
 	}
@@ -40,8 +51,12 @@ class express {
 		this.server((req, res) => {
 			// SET REQ BODY
 			req.on("data", (chunk) => {
-				req.body = JSON.parse(chunk.toString());
-				req.body = req.body || {};
+				try {
+					req.body = JSON.parse(chunk.toString());
+					req.body = req.body || {};
+				} catch (error) {
+					req.body = this.parseFormData(chunk.toString());
+				}
 			});
 
 			// SET REQ QUERY
@@ -92,13 +107,13 @@ class express {
 				fs.readFile(path.join(pathFile), (error, result) => {
 					try {
 						res.setHeader("Content-Type", "text/html");
-						// for (let i in data) {
-						// 	console.log(`{{${i}}}`);
-						// 	result = Buffer.from(
-						// 		result.toString().replace(`{{${i}}}`, data[i]),
-						// 		"utf8"
-						// 	);
-						// }
+						for (let i in data) {
+							result = Buffer.from(
+								result.toString().replace(`{{${i}}}`, data[i]),
+								"utf8"
+							);
+						}
+
 						res.end(result);
 					} catch (error) {
 						console.log(new Error(error.message));
@@ -111,7 +126,6 @@ class express {
 					if (!this.middleware.length) {
 						if (this.router[method][i][`${req.url}`] && req.method == method) {
 							req.on("end", () => {
-								const formData = new URLSearchParams(req.body);
 								this.router[method][i][`${req.url}`](req, res);
 							});
 							return;

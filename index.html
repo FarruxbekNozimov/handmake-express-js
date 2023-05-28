@@ -62,17 +62,20 @@
 	</style>
 	<body>
 		<h1>Node Coders 👋</h1>
-		<form action="/" method="POST">
+		<form id="myForm" action="/" method="POST">
 			<h2>SEND TO POST</h2>
 			<div class="cont">
 				<label for="name">NAME: </label>
-				<input type="text" id="name" value="name" />
+				<input type="text" name="name" placeholder="name" />
 			</div>
 			<div class="cont">
 				<label for="email">EMAIL: </label>
-				<input type="text" id="email" value="email" />
+				<input type="text" name="email" placeholder="email" />
 			</div>
-			<button type="submit" value="submit">SUBMIT</button>
+			<button type="submit" name="submit">SUBMIT</button>
 		</form>
+		<script>
+			const form = document.getElementById("myForm");
+		</script>
 	</body>
 </html>
