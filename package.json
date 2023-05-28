@@ -1,0 +1,16 @@
+{
+	"name": "node_coders",
+	"version": "1.0.0",
+	"module": "",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"dev": "node index.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"express": "^4.18.2"
+	}
+}
