@@ -92,14 +92,13 @@ class express {
 				fs.readFile(path.join(pathFile), (error, result) => {
 					try {
 						res.setHeader("Content-Type", "text/html");
-						console.log(data);
-						for (let i in data) {
-							console.log(`{{${i}}}`);
-							result = Buffer.from(
-								result.toString().replace(`{{${i}}}`, data[i]),
-								"utf8"
-							);
-						}
+						// for (let i in data) {
+						// 	console.log(`{{${i}}}`);
+						// 	result = Buffer.from(
+						// 		result.toString().replace(`{{${i}}}`, data[i]),
+						// 		"utf8"
+						// 	);
+						// }
 						res.end(result);
 					} catch (error) {
 						console.log(new Error(error.message));
@@ -112,7 +111,7 @@ class express {
 					if (!this.middleware.length) {
 						if (this.router[method][i][`${req.url}`] && req.method == method) {
 							req.on("end", () => {
-								console.log(qs.parse(req.body));
+								const formData = new URLSearchParams(req.body);
 								this.router[method][i][`${req.url}`](req, res);
 							});
 							return;
